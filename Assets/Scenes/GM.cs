@@ -86,7 +86,7 @@ public class GM : MonoBehaviour
 
     public static void ReloadScene()
     {
-        Enemy.KillAll();
+        //Enemy.KillAll();
         scripts.Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

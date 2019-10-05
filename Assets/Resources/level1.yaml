@@ -1,16 +1,43 @@
 
 
 enemies:
- - type: "butch"
-   entry: "e1"
+ #- type: "butch"
+   #entry: "el"
+   #delay: .1
+   #target: "player"
+ #- type: "butch"
+   #entry: "er"
+   #delay: 1.5
+   #target: "player"
+ #- type: "butch"
+   #entry: "el"
+   #delay: 2
+   #target: "player"
+ #- type: "butch"
+   #entry: "er"
+   #delay: 2
+   #target: "player"
+#
+ #- type: "waitfordead"
+   #entry: ""
+   #delay: 0
+   #target: ""
+
+ - type: "hans"
+   entry: "elu"
    delay: 1
-   target: "player_cover"
- - type: "butch"
-   entry: "e2"
-   delay: 1.5
-   target: "player_cover"
- - type: "butch"
-   entry: "e1"
-   delay: 2
-   target: "player_cover"
+   target: "ul"
+ - type: "hans"
+   entry: "eru"
+   delay: .1
+   target: "ur"
+
+ - type: "hans"
+   entry: "er"
+   delay: .7
+   target: "dr"
+ - type: "hans"
+   entry: "el"
+   delay: 1
+   target: "dl"
 

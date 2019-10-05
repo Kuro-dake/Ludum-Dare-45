@@ -7,7 +7,8 @@ public class EnemyManager : MonoBehaviour
 {
 
     public NamedObjects named_enemies = new NamedObjects();
-
+    public HPBar hpbar;
+    public StressBar stressbar;
     private void Update()
     {
         
@@ -33,15 +34,23 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator GenerateEnemies()
     {
-        //yield return new WaitForSeconds(Random.RandomRange(2f, 4f));
+        yield break;
 
         while (enemy_info.Count > 0)
         {
             EnemyInfo next_enemy = enemy_info.Dequeue();
 
             yield return new WaitForSeconds(next_enemy.delay);
-
-            PlaceEnemy(next_enemy.type, next_enemy.entry, next_enemy.target);
+            if (next_enemy.type != "waitfordead") { 
+                PlaceEnemy(next_enemy.type, next_enemy.entry, next_enemy.target);
+            }
+            else
+            {
+                while (Enemy.any_alive)
+                {
+                    yield return null;
+                }
+            }
             
         }
 
