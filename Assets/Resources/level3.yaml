@@ -1,0 +1,33 @@
+x: 5
+y: 5
+cam: 11
+enemies:
+ - type: 1
+   pos: 4,4
+ - type: 2
+   pos: 2,4
+ - type: 2
+   pos: 4,2 
+ - type: 0
+   pos: 5,2
+ - type: 0
+   pos: 0,2
+ - type: 0
+   pos: 2,0
+ - type: 0
+   pos: 2,2 
+ - type: 0
+   pos: 3,0
+ - type: 0
+   pos: 0,0
+
+hp: 5
+ap: 4
+free_movement: 1
+damage: 1
+
+items: 6
+prices: 1
+values: 3
+
+border_damage: 5

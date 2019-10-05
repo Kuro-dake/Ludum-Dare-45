@@ -1,0 +1,45 @@
+g:Welcome to hell.|h:What the f***?|g:You're going to fight through, find Khronghnak, and kick his ass.|h:You've got to be sh***ing me.|g:I'm not. Bye.
+--
+h:Listen you idiot! I'm a turnip farmer, not a fighter.|h:How do you expect me to beat Coreduck...|g:It's Khronghak.|h:Whatever! I had enough trouble fighting two of those grining 
+demons. Send me home! I'M NOT FIGHTING 
+ANY F***ING PITLORDS!
+|g:I might be able to help you...|g:...for a price, of course. Life force only, no cash or credit.|h:FOR A PRICE?!?! OF COURSE?!?! ARE YOU SERIOUS?! 
+DID I MISS SOMETHING? 
+LIKE, DID I ACCIDENTALLY BEG YOU TO SEND ME TO HELL?!?!|g:Whatever peasant. Take it, or leave it. 
+You're not my only customer.|g:Also, you're not going anywhere until you kick Khronghak's arse.|h:ARGH!!!
+--
+g:Oooh! This looks difficult! I'll lent you some 
+vitality with very favorable interest.|h:Please...|h:Shove it up your arse!|g:You're taking it. Currently, I pretty much own you,
+so you're taking the lifeforce loan.|g:Also, don't step on the border squares. They're hot. 
+They won't do anything to the creeps, but will damage you.|h:Great...
+--
+g:So... I'm collecting the interest for the previous battle.|h:ARE YOU SERIOUS? HERE?! THERE'S A TON OF... 
+WHAT EVEN ARE THOSE!?|g:Relax. They're quick, but weak. And I'll give you a discount.
+--
+g:You look very angry. Like you'd 
+love to hit someone really hard right now.|h:I have somebody very specific on my mind. 
+Wanna come down here?|g:Nah, I'm fine up here. 
+But I could really use that extra energy of yours. 
+I'll buy it from you. What do you say?
+--
+g:Hah! You're in for it now. Imps are pretty tough.|h:Ugh... I could use a sword.|g:I can rent you one. For a price, of course.|h:You can `rent` me a sword... And you're telling me now?
+Do you even want me to succeed?
+--
+g:Oh, look. There's a crab-thing nest over there. 
+If I were you, I'd run and exterminate it before 
+they spread around and tear you apart.|h:Your concern for my well being is very touching.
+--
+g:Well, well, well...|g:Look who we have here.|l:Oh... hey Daisy.|h:...Daisy...? Your name is Daisy? Wait... Are you a woman?|g:No... I'm not a woman. My parents just insisted on "Daisy".|h:Suddenly, a lot of things make sense.|l:Human... did you wipe your feet before entering our home?|h:Wait your home? As in 
+"you and this floating asshole here live together"?|l:.........!!!!!!!!|l:YOUR FEET ARE DIRTY!!! 
+I JUST FINISHED SWEEPING THE FLOOR!!!|h:I'm sorry...|g:I'd defend yourself if I were you. He can't help himself.
+It goes with the profession.
+--
+l:I give up.|l: You fight like a devil! Never met a human like you!
+You have my respect, man.|h:Oof... glad that's over.|h:Okay, so, this guys seems allright for a pit lord.
+Except for his temper. What's your beef with him?|g:He stole a pack of cashews from me when I wasn't home!|h:No! I refuse to acknowledge the fact that you dragged 
+me through hell for a pack of cashews!|l:Come on Daisy. I didn't steal it. I just borrowed it. 
+I bought you a new one today. Look into the cupboard.|g:Ah... okay. Sorry. That was a misunderstanding.|h:So... you're like... roommates...|l:Technical term is "Pitmates".|g:Yeah, that.|l:Sorry guys, but I've gotta run. 
+Got some things that I have to take care of
+Hell business and stuff|l:See you later.|ll:a|n:.....|g:Soooo... sorry for the inconvenience. 
+How about this? I will grant you one wish for your trouble.
+This time, free of charge!|h:...|g:What do you say?|h:....|g:Peasant?|h:I really wish to beat the sh** out of you right now.|g:...|g:...Oh...

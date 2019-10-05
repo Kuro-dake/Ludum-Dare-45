@@ -1,0 +1,16 @@
+
+
+enemies:
+ - type: "butch"
+   entry: "e1"
+   delay: 1
+   target: "player_cover"
+ - type: "butch"
+   entry: "e2"
+   delay: 1.5
+   target: "player_cover"
+ - type: "butch"
+   entry: "e1"
+   delay: 2
+   target: "player_cover"
+

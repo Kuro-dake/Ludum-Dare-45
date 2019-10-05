@@ -1,0 +1,23 @@
+x: 5
+y: 5
+cam: 13
+enemies:
+ - type: 6
+   pos: 1,1
+ - type: 6
+   pos: 2,3
+ - type: 6
+   pos: 3,2 
+ - type: 6
+   pos: 2,2
+ 
+
+hp: 5
+ap: 3
+free_movement: 2
+damage: 2
+
+items: 0,6,2,3,4,5
+prices: 1,2,2,6,6,6
+values: 1,2,2,-1,-2,-2
+

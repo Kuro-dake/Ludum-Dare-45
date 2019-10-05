@@ -1,0 +1,18 @@
+x: 3
+y: 6
+cam: 13
+enemies:
+ - type: 7
+   pos: 2,6
+ 
+
+hp: 5
+ap: 3
+free_movement: 5
+damage: 2
+
+items: 0,1,2,3,4,5,6
+prices: 1,4,4,8,10,13,3
+values: 1,20,6,-4,-2,-5,4
+
+border_damage: 6

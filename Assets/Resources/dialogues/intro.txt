@@ -1,0 +1,4 @@
+n:WAKE UP, PEASANT!|H:Wh... what...?|G:I AM A MAGICAL GENIE, AND I'M COMING TO YOU WITH A WISH!!!|H:Ugh... Stop screaming, please! Also, I'm good, keep your wish. 
+Okay, thanks bye.|G:You got me wrong. I've got a wish, 
+and you are going to make it come true.|H:What? No... I'm not...|G:Oh yes, you are. I wish you to go to hell, 
+and fight Khronghnak, the pit lord!|H:What? Why would I... why would you...?!
