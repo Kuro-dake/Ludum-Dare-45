@@ -19,7 +19,20 @@ public class Enemy : MonoBehaviour
     public float stress_resistance = 1f;
     public float max_stress = 3f;
 
-    bool covering = false;
+    bool _covering = false;
+    Vector3 orig_size;
+    bool covering
+    {
+        get
+        {
+            return _covering;
+        }
+        set
+        {
+            _covering = value;
+            transform.localScale = value ? new Vector3(orig_size.x, orig_size.y / 2f) : orig_size;
+        }
+    }
 
     GameObject _crosshair;
     GameObject crosshair
@@ -57,7 +70,8 @@ public class Enemy : MonoBehaviour
     StressBar stressbar;
     public void Initialize()
     {
-        all_enemies.Add(this);
+        orig_size = transform.localScale;
+        GM.enemies.AddEnemy(this);
 
         hpbar = Instantiate(GM.enemies.hpbar).GetComponent<HPBar>();
         hpbar.Init(gameObject);
@@ -70,21 +84,14 @@ public class Enemy : MonoBehaviour
 
         act_routine = StartCoroutine(Act());
     }
-    static List<Enemy> all_enemies = new List<Enemy>();
-    public static bool any_alive
-    {
-        get
-        {
-            return all_enemies.Count > 0;
-        }
-    }
+    
     /// <summary>
     /// Should set all enemies to dead : doesn't have reason to exist right now, since logic behind alive/dead was changed
     /// @TODO: Remove if obsolete
     /// </summary>
     public static void KillAll()
     {
-        all_enemies.ForEach(delegate (Enemy obj)
+        GM.enemies.all_enemies.ForEach(delegate (Enemy obj)
         {
             obj.alive = false;
         });
@@ -132,12 +139,13 @@ public class Enemy : MonoBehaviour
         {
             if (!value && _alive)
             {
-                all_enemies.Remove(this);
+                GM.enemies.RemoveEnemy(this);
                 if (act_routine != null)
                 {
                     StopCoroutine(act_routine);
                 }
                 transform.Rotate(Vector3.back * 90f);
+                gameObject.layer = 0;
                 //Destroy(gameObject);
             }
             _alive = value;
@@ -184,25 +192,34 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Attacked();
+        //Attacked();
     }
 
-    void Attacked()
+    public void Attacked(int damage)
     {
+        if ((hp -= damage) < 1)
+        {
+            alive = false;
+        }
+        hpbar.Display(hp);
+        
+        return;
+
         switch (GM.player.Shoot())
         {
             case damage_type.physical:
-                if ((hp -= GM.player.damage) < 1)
-                {
-                    alive = false;
-                }
-                hpbar.Display(hp);
+                
                 break;
             case damage_type.stress:
                 stress = Mathf.Clamp(stress + 1f / stress_resistance, 0f, max_stress);
                 break;
         }
         
+    }
+
+    public void FireStress(float distance_modifier)
+    {
+        stress = Mathf.Clamp(stress + distance_modifier / stress_resistance, 0f, max_stress);
     }
 }
 

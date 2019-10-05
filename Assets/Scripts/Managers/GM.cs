@@ -67,8 +67,8 @@ public class GM : MonoBehaviour
 
     
 
-    /*public static sounds sounds { get { return GetScript<sounds>("Sounds"); } }
-    public static music music { get { return GetScript<music>("Music"); } }
+    public static GameManager game { get { return GetScript<GameManager>("GameManager"); } }
+   /* public static music music { get { return GetScript<music>("Music"); } }
 
     public static Cinema cinema { get { return GetScript<Cinema>("Cinema"); } }
     public static TitleScreen title { get { return GetScript<TitleScreen>("TitleScreen"); } }

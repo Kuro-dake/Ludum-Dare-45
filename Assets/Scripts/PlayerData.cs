@@ -56,21 +56,6 @@ public class PlayerData : MonoBehaviour
         starting_scale = player_dummy.transform.localScale;
     }
 
-    public void ShootRay()
-    {
-        int grnd = 1 << LayerMask.NameToLayer("environment");
-        int fly = 1 << LayerMask.NameToLayer("enemies");
-        int mask = grnd | fly;
-        Vector2 ppos = player_dummy.transform.position;
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction -= ppos;
-        
-        Debug.DrawRay(ppos, direction, Color.red, 3f);
-        RaycastHit2D hit = Physics2D.Raycast(ppos, direction , Mathf.Infinity, mask);
-        Instantiate(player_dummy).transform.position = hit.point;
-        Debug.Log(hit.collider.gameObject.name);
-
-    }
 }
 
 public enum damage_type

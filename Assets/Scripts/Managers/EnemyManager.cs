@@ -9,6 +9,29 @@ public class EnemyManager : MonoBehaviour
     public NamedObjects named_enemies = new NamedObjects();
     public HPBar hpbar;
     public StressBar stressbar;
+
+
+    List<Enemy> _all_enemies = new List<Enemy>();
+    public List<Enemy> all_enemies
+    {
+        get { return _all_enemies; }
+    }
+    public bool any_alive
+    {
+        get
+        {
+            return all_enemies.Count > 0;
+        }
+    }
+    public void AddEnemy(Enemy en)
+    {
+        _all_enemies.Add(en);
+    }
+    public void RemoveEnemy(Enemy en)
+    {
+        _all_enemies.Remove(en);
+    }
+
     private void Update()
     {
         
@@ -34,7 +57,7 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator GenerateEnemies()
     {
-        yield break;
+        
 
         while (enemy_info.Count > 0)
         {
@@ -46,7 +69,7 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
-                while (Enemy.any_alive)
+                while (any_alive)
                 {
                     yield return null;
                 }
@@ -63,6 +86,17 @@ public class EnemyManager : MonoBehaviour
         e.transform.position = GM.level_manager.current_level.entrances.GetByName(entry).transform.position;
         e.movement_target = GM.level_manager.current_level.targets.GetByName(target);
         e.Initialize();
+        e.gameObject.name = type + " " + Random.Range(0, 399);
+    }
+    [SerializeField]
+    float stress_distance_modifier = 3f;
+
+    public void FireStress(Vector3 impact_point)
+    {
+        all_enemies.ForEach(delegate (Enemy en) {
+            Debug.Log(en.name + " " + Vector2.Distance(transform.position, impact_point));
+            en.FireStress(Mathf.Clamp(stress_distance_modifier / Vector2.Distance(en.transform.position, impact_point), 0f, 1f));
+        });
     }
 
 }

@@ -62,13 +62,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Controls.cs" />
-    <Compile Include="Assets\HPBar.cs" />
-    <Compile Include="Assets\Scenes\GM.cs" />
-    <Compile Include="Assets\Scripts\DataExtensions.cs" />
+    <Compile Include="Assets\Scripts\Data\DataExtensions.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\HPBar.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
+    <Compile Include="Assets\Scripts\Managers\Controls.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GM.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Plugins\YamlDotNet\Core\AnchorNotFoundException.cs" />
@@ -263,8 +264,8 @@
     <Compile Include="Assets\Scripts\Plugins\YamlDotNet\Serialization\YamlIgnoreAttribute.cs" />
     <Compile Include="Assets\Scripts\Plugins\YamlDotNet\Serialization\YamlMember.cs" />
     <Compile Include="Assets\Scripts\SceneObject.cs" />
-    <Compile Include="Assets\ShotHit.cs" />
-    <Compile Include="Assets\StressBar.cs" />
+    <Compile Include="Assets\Scripts\ShotHit.cs" />
+    <Compile Include="Assets\Scripts\StressBar.cs" />
     <None Include="Assets\Resources\dialogues\intro.txt" />
     <None Include="Assets\Resources\dialogues\dialogues.txt" />
     <None Include="Assets\Scripts\Plugins\YamlDotNet\YamlDotNet.license.txt" />
