@@ -712,6 +712,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: base_character_color_18
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 1693
+        width: 198
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5037182, y: 0.4744371}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 372b43b63d14f074b9cdb6facb5c3c7c
+      internalID: 2304031894565964842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_character_color_19
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1519
+        width: 156
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc55d35bda489a4c987ee20de708d4b
+      internalID: 1064763078924242963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_character_color_20
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 1407
+        width: 85
+        height: 95
+      alignment: 9
+      pivot: {x: 0.6305937, y: 0.763686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbee0841ea6f33c409b3e938c4482d76
+      internalID: -2415427040899286559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_character_color_21
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 1521
+        width: 104
+        height: 63
+      alignment: 9
+      pivot: {x: 0.5373805, y: 0.47756037}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b377882945bdaf459e6150646912d3b
+      internalID: -3427092691925875689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: base_character_color_22
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 1408
+        width: 81
+        height: 122
+      alignment: 9
+      pivot: {x: 0.38932744, y: 0.58588046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6264523759ea6d74eb810692497233b9
+      internalID: -7001919374616652068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

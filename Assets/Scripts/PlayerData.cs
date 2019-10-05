@@ -9,7 +9,7 @@ public class PlayerData : MonoBehaviour
     public int damage = 1;
     public int hp = 3;
 
-    public GameObject player_dummy;
+    public Character player_dummy;
 
     bool _covering = false;
     public bool covering
@@ -21,8 +21,7 @@ public class PlayerData : MonoBehaviour
         set
         {
             _covering = value;
-            Vector3 ls = player_dummy.transform.localScale;
-            player_dummy.transform.localScale = value ? new Vector3(ls.x, ls.y / 2f, ls.z) : starting_scale;
+            player_dummy.covering = value;
         }
     }
 
@@ -50,10 +49,10 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    Vector3 starting_scale = Vector3.one;
+    
     private void Start()
     {
-        starting_scale = player_dummy.transform.localScale;
+    
     }
 
 }

@@ -23,6 +23,7 @@ public class HPBar : MonoBehaviour
     public void Init(GameObject f)
     {
         follow = f;
+        transform.SetParent(f.transform);
     }
 
     public void Display(int num)

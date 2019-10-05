@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator GenerateEnemies()
     {
-        
+        //yield break;
 
         while (enemy_info.Count > 0)
         {

@@ -21,6 +21,15 @@ public class Enemy : MonoBehaviour
 
     bool _covering = false;
     Vector3 orig_size;
+
+    Character character
+    {
+        get
+        {
+            return GetComponent<Character>();
+        }
+    }
+
     bool covering
     {
         get
@@ -30,7 +39,7 @@ public class Enemy : MonoBehaviour
         set
         {
             _covering = value;
-            transform.localScale = value ? new Vector3(orig_size.x, orig_size.y / 2f) : orig_size;
+            character.covering = value;
         }
     }
 
@@ -72,7 +81,7 @@ public class Enemy : MonoBehaviour
     {
         orig_size = transform.localScale;
         GM.enemies.AddEnemy(this);
-
+        character.character_target = GM.player.player_dummy.transform.Find("torso").gameObject;
         hpbar = Instantiate(GM.enemies.hpbar).GetComponent<HPBar>();
         hpbar.Init(gameObject);
         hpbar.Display(hp);
@@ -114,20 +123,10 @@ public class Enemy : MonoBehaviour
             yield break;
         }
         GM.player.Attacked(damage, type);
-        StartCoroutine(DevAttackAnimation());
+        character.Shoot();
     }
 
-    IEnumerator DevAttackAnimation()
-    {
-        Vector3 prevscale = transform.localScale;
-        transform.localScale *= 2f;
-        while(transform.localScale.x > prevscale.x)
-        {
-            transform.localScale -= Time.deltaTime * prevscale;
-            yield return null;
-        }
-        transform.localScale = prevscale;
-    }
+    
     bool _alive = true;
     public bool alive
     {
@@ -146,7 +145,7 @@ public class Enemy : MonoBehaviour
                 }
                 transform.Rotate(Vector3.back * 90f);
                 gameObject.layer = 0;
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
             _alive = value;
         }
@@ -182,12 +181,12 @@ public class Enemy : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        crosshair_visible = true;
+        //crosshair_visible = true;
     }
 
     private void OnMouseExit()
     {
-        crosshair_visible = false;
+        //crosshair_visible = false;
     }
 
     private void OnMouseDown()
