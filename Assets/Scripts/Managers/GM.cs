@@ -61,16 +61,16 @@ public class GM : MonoBehaviour
     static Text devout { get { return GetScript<Text>("DevOut"); } }
     public static void DevoutUpdate()
     {
-        devout.text = "ammo : " + GM.player.ammo.ToString() + " ; HP : " + GM.player.hp;
+        devout.text = "ammo : " + GM.player.ammo.ToString() + " ; HP : " + GM.player.player_dummy.hp;
     }
     public static PlayerData player { get { return GetScript<PlayerData>("PlayerData"); } }
 
     
 
     public static GameManager game { get { return GetScript<GameManager>("GameManager"); } }
-   /* public static music music { get { return GetScript<music>("Music"); } }
+    public static Controls controls { get { return GetScript<Controls>("Controls"); } }
 
-    public static Cinema cinema { get { return GetScript<Cinema>("Cinema"); } }
+   /* public static Cinema cinema { get { return GetScript<Cinema>("Cinema"); } }
     public static TitleScreen title { get { return GetScript<TitleScreen>("TitleScreen"); } }
 
     public static GameObject canvas { get { return inst["Canvas"]; } }

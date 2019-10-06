@@ -15,6 +15,12 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GM.ReloadScene();
+        }
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             GM.player.covering = true;
@@ -27,7 +33,7 @@ public class Controls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            ShootRay();
+            GM.player.player_dummy.ShootRay();
         }
 
         Character pchar = GM.player.player_dummy;
@@ -48,44 +54,18 @@ public class Controls : MonoBehaviour
             lr.enabled = false;
         }
 
-        float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        arm.transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+        if(Vector2.Distance(arm.transform.position, mpos) > 1f)
+        {
+            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+        }
+        
 
         
         
 
     }
     [SerializeField]
-    float cover_precision_decrease = .5f;
-    public void ShootRay()
-    {
-        int grnd = 1 << LayerMask.NameToLayer("environment");
-        int fly = 1 << LayerMask.NameToLayer("enemies");
-        int mask = grnd | fly;
-        Vector2 ppos = GM.player.player_dummy.arm.transform.position;
-        Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction -= ppos;
-        direction.Normalize();
-        direction *= 5f;
-        if (GM.player.covering)
-        {
-            direction += Random.insideUnitCircle.normalized * cover_precision_decrease;
-        }
-
-        RaycastHit2D hit = Physics2D.Raycast(ppos, direction, Mathf.Infinity, mask);
-        Vector2 hit_position = hit.point;
-
-        
-        if (hit.collider != null)
-        {
-            GM.game.Hit(hit_position);
-            Enemy en = hit.collider.transform.GetComponentInParent<Enemy>();
-            if (en != null)
-            {
-                en.Attacked(GM.player.damage);
-            }
-            GM.enemies.FireStress(hit_position);
-        }
-        GM.player.player_dummy.Shoot();
-    }
+    public float cover_precision_decrease = .5f;
+    
 }

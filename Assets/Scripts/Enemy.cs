@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
 
-    public int hp;
-    public int damage = 1;
+    
     public GameObject movement_target;
-
-    public float attack_delay = 1f;
 
     public enemy_type type;
 
@@ -19,7 +16,6 @@ public class Enemy : MonoBehaviour
     public float stress_resistance = 1f;
     public float max_stress = 3f;
 
-    bool _covering = false;
     Vector3 orig_size;
 
     Character character
@@ -30,18 +26,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    bool covering
-    {
-        get
-        {
-            return _covering;
-        }
-        set
-        {
-            _covering = value;
-            character.covering = value;
-        }
-    }
 
     GameObject _crosshair;
     GameObject crosshair
@@ -69,11 +53,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
     Coroutine act_routine;
     HPBar hpbar;
     StressBar stressbar;
@@ -92,6 +72,9 @@ public class Enemy : MonoBehaviour
 
 
         act_routine = StartCoroutine(Act());
+
+        anim.SetBool("melee", type == enemy_type.melee);
+
     }
     
     /// <summary>
@@ -100,12 +83,19 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public static void KillAll()
     {
-        GM.enemies.all_enemies.ForEach(delegate (Enemy obj)
+        GM.enemies.alive_enemies.ForEach(delegate (Enemy obj)
         {
             obj.alive = false;
         });
     }
     float last_attack = 0f;
+    public float attack_delay = 1f;
+
+    public float salve_delay = 3f;
+
+    public float salve_between_shots_delay = .2f;
+    public int salve_number = 3;
+
     IEnumerator Attack()
     {
         last_attack = attack_delay;
@@ -118,12 +108,25 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
         
-        if (!alive)
+        
+        for (int i = 0; i < salve_number; i++)
         {
-            yield break;
+            if (!alive)
+            {
+                yield break;
+            }
+            if (type == enemy_type.ranged)
+            {
+                character.ShootRay();
+            }
+            else
+            {
+                anim.SetTrigger("attack");
+                GM.player.player_dummy.Attacked(damage);
+            }
+
+            yield return new WaitForSeconds(salve_between_shots_delay);
         }
-        GM.player.Attacked(damage, type);
-        character.Shoot();
     }
 
     
@@ -145,21 +148,26 @@ public class Enemy : MonoBehaviour
                 }
                 transform.Rotate(Vector3.back * 90f);
                 gameObject.layer = 0;
-                Destroy(gameObject);
+                FadeOut();
+                anim.SetBool("dead", true);
+                
             }
             _alive = value;
         }
     }
     IEnumerator Act()
     {
-        while (Vector2.Distance(transform.position, movement_target.transform.position) > .5f)
+        float desired_distance = type == enemy_type.melee ? 1.5f : .5f;
+        while (Vector2.Distance(transform.position, movement_target.transform.position) > desired_distance)
         {
             if (!covering)
             {
                 transform.position = Vector2.MoveTowards(transform.position, movement_target.transform.position, Time.deltaTime * movement_speed);
             }
+            anim.SetBool("walking", true);
             yield return null;
         }
+        anim.SetBool("walking", false);
 
         while (true)
         {
@@ -168,15 +176,20 @@ public class Enemy : MonoBehaviour
        
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        
         stress -= Time.deltaTime / 2f;
         covering = stress > 1f;
         if(stress > 0f) {
             stressbar.DisplayFloat(stress);
         }
-        
+        if(stress < 0f)
+        {
+            stress = 0f;
+        }
+        base.Update();
+
     }
 
     private void OnMouseEnter()
@@ -194,8 +207,12 @@ public class Enemy : MonoBehaviour
         //Attacked();
     }
 
-    public void Attacked(int damage)
+    public override void Attacked(int damage)
     {
+        if (covering)
+        {
+            return;
+        }
         if ((hp -= damage) < 1)
         {
             alive = false;
@@ -215,9 +232,22 @@ public class Enemy : MonoBehaviour
         }
         
     }
-
-    public void FireStress(float distance_modifier)
+    protected override bool aim {
+        get {
+            return type != enemy_type.melee;
+        }
+    }
+    public void DecreaseFireStress(float how_much)
     {
+        
+    }
+
+    public override void FireStress(float distance_modifier)
+    {
+        if(type == enemy_type.melee)
+        {
+            return;
+        }
         stress = Mathf.Clamp(stress + distance_modifier / stress_resistance, 0f, max_stress);
     }
 }

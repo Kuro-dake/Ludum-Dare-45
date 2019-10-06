@@ -31,15 +31,15 @@ enemies:
    entry: "el"
    delay: .1
    target: "player"
- - type: "hans"
-   entry: "eru"
-   delay: .1
-   target: "ur"
-
- - type: "hans"
-   entry: "er"
-   delay: .7
-   target: "dr"
+ #- type: "hans"
+   #entry: "eru"
+   #delay: .1
+   #target: "ur"
+#
+ #- type: "hans"
+   #entry: "er"
+   #delay: .7
+   #target: "dr"
  - type: "hans"
    entry: "el"
    delay: 1

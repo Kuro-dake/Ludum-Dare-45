@@ -21,7 +21,11 @@ public class ShotHit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 decrease = Vector3.one * Time.deltaTime * decrease_speed;
+        if (sr.color.a <= 0f)
+        {
+            return;
+        }
+            Vector3 decrease = Vector3.one * Time.deltaTime * decrease_speed;
         decrease.z = 0f;
         transform.localScale += decrease;
         Vector3 lr = transform.localRotation.eulerAngles;
@@ -29,7 +33,7 @@ public class ShotHit : MonoBehaviour
         sr.color -= Color.black * Time.deltaTime * decrease_speed;
         if(sr.color.a <= 0f)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject, 2f);
         }
     }
 }

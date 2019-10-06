@@ -6,22 +6,20 @@ public class PlayerData : MonoBehaviour
 {
 
     public int ammo = 5;
-    public int damage = 1;
-    public int hp = 3;
-
+    
+    
     public Character player_dummy;
 
-    bool _covering = false;
     public bool covering
     {
         get
         {
-            return _covering;
+            return player_dummy.covering;
         }
         set
         {
-            _covering = value;
             player_dummy.covering = value;
+            
         }
     }
 
@@ -36,18 +34,7 @@ public class PlayerData : MonoBehaviour
         return covering ? damage_type.stress : damage_type.physical;
     }
 
-    public void Attacked(int damage, enemy_type type)
-    {
-        if (type == enemy_type.melee || type == enemy_type.ranged && !covering)
-        {
-            hp -= damage;
-        }
-        GM.DevoutUpdate();
-        if(hp <= 0)
-        {
-            GM.ReloadScene();
-        }
-    }
+    
 
     
     private void Start()

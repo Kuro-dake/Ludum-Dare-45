@@ -817,6 +817,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: base_character_color_23
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 1344
+        width: 549
+        height: 312
+      alignment: 9
+      pivot: {x: 0.13535285, y: 0.5849848}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b61bb1d1e3244242a42973c124a7e09
+      internalID: 8719697994494616168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

@@ -46,4 +46,4 @@ MonoBehaviour:
   follow: {fileID: 0}
   width: 0.5
   dot: {fileID: 923583735960467276, guid: 69e981f4646d8454db821f7993668c0a, type: 3}
-  position_distance: 0.4
+  position_distance: 2

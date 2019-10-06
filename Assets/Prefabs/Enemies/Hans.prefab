@@ -3449,7 +3449,6 @@ GameObject:
   - component: {fileID: 1525285642004391243}
   - component: {fileID: 1611082458267367626}
   - component: {fileID: 2837523810135089615}
-  - component: {fileID: 767102658526372273}
   - component: {fileID: 4786442372113670827}
   m_Layer: 0
   m_Name: hans
@@ -3542,22 +3541,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &767102658526372273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8862991343267580175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df4a79ab8b78f54db62f5e3136368a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arm: {fileID: 6237384403819815314}
-  gun_flash: {fileID: 3627328601286863077}
-  mouth: {fileID: 2437391631136188460}
-  jolt: 0
 --- !u!114 &4786442372113670827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3570,12 +3553,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fd1e633d57dbd4e84cb461f6b4d186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 2
   damage: 1
+  arm: {fileID: 6237384403819815314}
+  gun_flash: {fileID: 3627328601286863077}
+  mouth: {fileID: 2437391631136188460}
+  character_target: {fileID: 0}
+  jolt: 0
+  gunfire_spread: 0.5
   movement_target: {fileID: 0}
-  attack_delay: 1
-  type: 0
+  type: 1
   movement_speed: 2
   stress: 0
   stress_resistance: 1
   max_stress: 3
+  attack_delay: 3
+  salve_delay: 3
+  salve_between_shots_delay: 0.2
+  salve_number: 3

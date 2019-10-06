@@ -12,15 +12,24 @@ public class EnemyManager : MonoBehaviour
 
 
     List<Enemy> _all_enemies = new List<Enemy>();
+    public List<Enemy> alive_enemies
+    {
+        get { return all_enemies.FindAll(delegate (Enemy en) { return en.alive; }); }
+    }
+
     public List<Enemy> all_enemies
     {
-        get { return _all_enemies; }
+        get
+        {
+            return _all_enemies;
+        }
     }
+
     public bool any_alive
     {
         get
         {
-            return all_enemies.Count > 0;
+            return alive_enemies.Count > 0;
         }
     }
     public void AddEnemy(Enemy en)
@@ -54,10 +63,13 @@ public class EnemyManager : MonoBehaviour
 
         StartCoroutine(GenerateEnemies());
     }
-
+    public bool activated = true;
     IEnumerator GenerateEnemies()
     {
-        //yield break;
+        if (!activated)
+        {
+            yield break;
+        }
 
         while (enemy_info.Count > 0)
         {
@@ -91,10 +103,26 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     float stress_distance_modifier = 3f;
 
+    public void DecreaseFireStress()
+    {
+        alive_enemies.RemoveAll(delegate (Enemy en)
+        {
+            return en == null;
+        });
+        alive_enemies.ForEach(delegate (Enemy en) {
+
+            en.DecreaseFireStress(-1f);
+        });
+    }
+
     public void FireStress(Vector3 impact_point)
     {
-        all_enemies.ForEach(delegate (Enemy en) {
-            Debug.Log(en.name + " " + Vector2.Distance(transform.position, impact_point));
+        alive_enemies.RemoveAll(delegate (Enemy en)
+        {
+            return en == null;
+        });
+        alive_enemies.ForEach(delegate (Enemy en) {
+            
             en.FireStress(Mathf.Clamp(stress_distance_modifier / Vector2.Distance(en.transform.position, impact_point), 0f, 1f));
         });
     }
