@@ -18,7 +18,7 @@ public class Controls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            GM.ReloadScene();
+            GM.enemies.StartGeneratingEnemies();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -56,8 +56,8 @@ public class Controls : MonoBehaviour
 
         if(Vector2.Distance(arm.transform.position, mpos) > 1f)
         {
-            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            arm.transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+            pchar.arm_z_rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            arm.transform.rotation = Quaternion.Euler(0f, 0f, pchar.arm_z_rotation + 90);
         }
         
 

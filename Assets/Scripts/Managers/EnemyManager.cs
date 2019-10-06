@@ -96,7 +96,7 @@ public class EnemyManager : MonoBehaviour
     {
         Enemy e = Instantiate(named_enemies.GetByName(type)).GetComponent<Enemy>();
         e.transform.position = GM.level_manager.current_level.entrances.GetByName(entry).transform.position;
-        e.movement_target = GM.level_manager.current_level.targets.GetByName(target);
+        e.movement_target = e.type == enemy_type.melee ? GM.player.player_dummy.gameObject : GM.level_manager.current_level.targets.GetByName(target);
         e.Initialize();
         e.gameObject.name = type + " " + Random.Range(0, 399);
     }

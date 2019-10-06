@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3177774162852158776}
   - component: {fileID: 153811568173342840}
   m_Layer: 0
-  m_Name: explosion (1)
+  m_Name: explosionparticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4727,8 +4727,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1754689233
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4901,7 +4901,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4954,7 +4954,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 40
+      scalar: 140
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5651,7 +5651,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 2000
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9513,9 +9513,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1754689233
+  m_SortingLayer: 2
+  m_SortingOrder: 100
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -9566,7 +9566,7 @@ Transform:
   m_GameObject: {fileID: 8583042677164462497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children: []
   m_Father: {fileID: 7541208875734897283}
   m_RootOrder: 1
@@ -9606,8 +9606,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1754689233
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2304031894565964842, guid: 37f13ce504079a74a895c1fd752ccc93,
     type: 3}
@@ -9633,4 +9633,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43959709b229334484ee9cd8e01f8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decrease_speed: 10
+  decrease_speed: 3

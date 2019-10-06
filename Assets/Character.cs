@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public int damage = 1;
 
     public GameObject arm;
+    public float arm_z_rotation;
     public GameObject gun_flash;
     public Animator mouth;
 
@@ -53,7 +54,7 @@ public class Character : MonoBehaviour
             if (is_player) { 
                 gunfire_spread = value ? GM.controls.cover_precision_decrease : 0f;
             }
-            foreach (PolygonCollider2D pc2d in transform.GetComponentsInChildren<PolygonCollider2D>())
+            foreach (BoxCollider2D pc2d in transform.GetComponentsInChildren<BoxCollider2D>())
             {
                 pc2d.gameObject.layer = value ? 0 : LayerMask.NameToLayer(layer_name);
             }
@@ -81,13 +82,17 @@ public class Character : MonoBehaviour
     {
 
         int direction = 0;
-        float z = arm.transform.rotation.eulerAngles.z;
-        if ( z > 212f && z < 338f)
+        float z = arm_z_rotation;
+        /*if (gameObject.name == "player") {
+            Debug.Log("correct facing " + z + " time " + Time.time);
+        }*/
+
+        if ( z > 122f || z < -58f)
         {
             direction = -1;
         }
 
-        if (z < 148f && z > 24f)
+        if (z < 58f && z > -58f)
         {
             direction = 1;
         }
@@ -120,9 +125,9 @@ public class Character : MonoBehaviour
             Vector2 ppos = arm.transform.position;
             Vector2 mpos = character_target.transform.position;
             Vector2 direction = mpos - ppos;
-            float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            arm.transform.rotation = Quaternion.Euler(0f, 0f, rot_z + 90);
+            arm_z_rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            
+            arm.transform.rotation = Quaternion.Euler(0f, 0f, arm_z_rotation + 90);
 
         }
 

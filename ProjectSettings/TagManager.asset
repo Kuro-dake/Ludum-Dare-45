@@ -39,9 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: env
+    uniqueID: 3911016243
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: characters
     uniqueID: 192808825
+    locked: 0
+  - name: overlay
+    uniqueID: 2540278063
+    locked: 0
+  - name: UI
+    uniqueID: 77006033
     locked: 0

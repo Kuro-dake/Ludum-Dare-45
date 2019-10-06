@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
         if (!blood) {
             Destroy(blood_particle_obj.gameObject);
         }
+        else
+        {
+            Destroy(nsh.transform.FindChild("explosionparticle").gameObject);
+        }
 
         Vector2 ppos = point;
         Vector2 mpos = from;
