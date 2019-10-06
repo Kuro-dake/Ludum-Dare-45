@@ -38,11 +38,11 @@ public class DialogueManager : MonoBehaviour
     [TextArea(10, 15)]
     public List<string> level_intros = new List<string>();
 
-    public void PlayLevelString(int string_num)
+    public void PlayLevelString(int string_num, string prefix = "")
     {
         active = true;
         LoadLevelIntros();
-        PlayString(level_intros[string_num]);
+        PlayString(prefix + level_intros[string_num]);
     }
 
     public void LoadLevelIntros()
@@ -165,6 +165,7 @@ public class DialogueManager : MonoBehaviour
         {
             right_actor.talking = false;
         }
+        audio.Stop();
     }
     Dictionary<string, string> names = new Dictionary<string, string>() {
         { "butch", "Butcher" },

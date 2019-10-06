@@ -329,7 +329,11 @@ public static class DataExtensions
 
 
 }
-
+[System.Serializable]
+public class NamedAudioClip : Pair<string, AudioClip>
+{
+    public NamedAudioClip(string s, AudioClip a) : base(s,a) { }
+}
 public class EnemyInfo
 {
     public string entry;

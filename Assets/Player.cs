@@ -13,10 +13,10 @@ public class Player : Character
     {
         anim.SetBool("dead", false);
     }
-    public override void Attacked(int damage)
+    public override void Attacked(int damage, bool melee = false)
     {
         
-        if (!covering)
+        if (!covering || melee)
         {
             hp = Mathf.Clamp(hp-damage, 0, GM.player.hpmax);
         }

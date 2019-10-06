@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fd1e633d57dbd4e84cb461f6b4d186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 3
   damage: 2
   arm: {fileID: 4890065478321290821}
   arm_z_rotation: 0

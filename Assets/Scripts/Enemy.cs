@@ -124,7 +124,8 @@ public class Enemy : Character
             else
             {
                 anim.SetTrigger("attack");
-                GM.player.player_dummy.Attacked(damage);
+                GM.player.player_dummy.Attacked(damage, true);
+                GM.audio.PlaySound("hit_flesh");
             }
 
             yield return new WaitForSeconds(salve_between_shots_delay);
@@ -219,7 +220,7 @@ public class Enemy : Character
         //Attacked();
     }
 
-    public override void Attacked(int damage)
+    public override void Attacked(int damage, bool melee = false)
     {
         if (covering)
         {

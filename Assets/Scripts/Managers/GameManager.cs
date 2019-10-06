@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public void Hit(Vector2 point, Vector2 from, bool blood)
     {
-        
+        GM.audio.PlaySound(blood ? "hit_flesh" : "hit");
         GameObject nsh = Instantiate(shot_hit, point, Quaternion.identity);
         Transform blood_particle_obj = nsh.transform.FindChild("particle");
         if (!blood) {

@@ -77,6 +77,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void RestartFromCheckpoint()
     {
+        was_dead = true;
         GM.player.player_dummy.ResetAnim();
         KillAll();
         StopCoroutine(generating_routine);
@@ -84,6 +85,9 @@ public class EnemyManager : MonoBehaviour
         generating_routine = StartCoroutine(GenerateEnemies());
         Debug.Log("should reload");
     }
+    public bool was_dead = false;
+    [TextArea(10, 15)]
+    public string was_dead_string = "";
     IEnumerator GenerateEnemies()
     {
         if (!activated)
@@ -94,8 +98,10 @@ public class EnemyManager : MonoBehaviour
         while (enemy_info.Count > 0)
         {
             EnemyInfo next_enemy = enemy_info.Peek();
-
-            yield return new WaitForSeconds(next_enemy.delay);
+            if (!was_dead)
+            {
+                yield return new WaitForSeconds(next_enemy.delay);
+            }
             if (next_enemy.type == "waitfordead") {
                 while (any_alive)
                 {
@@ -107,7 +113,8 @@ public class EnemyManager : MonoBehaviour
                 info_from_checkpoint = new Queue<EnemyInfo>(enemy_info); 
                 GM.player.player_dummy.hp = GM.player.hpmax;
                 GM.DevoutUpdate();
-                GM.cinema.PlayLevelString(int.Parse(next_enemy.target) + level_modifier_dev);
+                GM.cinema.PlayLevelString(int.Parse(next_enemy.target) + level_modifier_dev, was_dead ? was_dead_string : "");
+                was_dead = false;
                 while (GM.cinema.active)
                 {
                     yield return null;

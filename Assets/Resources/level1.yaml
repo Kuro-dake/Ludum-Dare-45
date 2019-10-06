@@ -19,7 +19,7 @@ enemies:
  
  - type: "dialogue"
    entry: ""
-   delay: 0
+   delay: 2
    target: "1"
 
  - type: "slasher"

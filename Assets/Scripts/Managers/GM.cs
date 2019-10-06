@@ -78,9 +78,9 @@ public class GM : MonoBehaviour
     public static Controls controls { get { return GetScript<Controls>("Controls"); } }
 
     public static DialogueManager cinema { get { return GetScript<DialogueManager>("DialogueManager"); } }
-   /* public static TitleScreen title { get { return GetScript<TitleScreen>("TitleScreen"); } }
+    public static AudioManager audio { get { return GetScript<AudioManager>("AudioManager"); } }
 
-    public static GameObject canvas { get { return inst["Canvas"]; } }
+   /* public static GameObject canvas { get { return inst["Canvas"]; } }
     public static DialogueContainer dialogues { get { return GetScript<DialogueContainer>("Dialogues"); } }
 
     public static DynamicUI dynamic_ui { get { return GetScript<DynamicUI>("DynamicUI"); } }*/

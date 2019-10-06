@@ -39,6 +39,7 @@ public class Character : MonoBehaviour
         gun_flash.GetComponent<SpriteRenderer>().color = Color.white;
         gun_flash.transform.localRotation = Quaternion.EulerAngles(0f, 0f, Random.Range(-1f, 1f));
         GM.game.Flash(arm.transform.position);
+        GM.audio.PlaySound("shoot");
     }
 
     bool _covering = false;
@@ -120,7 +121,7 @@ public class Character : MonoBehaviour
     {
         gun_flash.GetComponent<SpriteRenderer>().color -= Color.black * Time.deltaTime * 10f;
         
-        if (character_target != null && aim)
+        if (character_target != null && aim && hp > 0)
         {
 
             Vector2 ppos = arm.transform.position;
@@ -215,7 +216,10 @@ public class Character : MonoBehaviour
             {
                 GM.enemies.FireStress(hit_position);
             }
-            GM.game.Hit(hit_position, ppos, blood);
+            if (is_player || !is_player && (!GM.player.covering || !blood))
+            {
+                GM.game.Hit(hit_position, ppos, blood);
+            }
         }
         Shoot();
     }
@@ -223,7 +227,7 @@ public class Character : MonoBehaviour
     {
         
     }
-    public virtual void Attacked(int damage)
+    public virtual void Attacked(int damage, bool melee = false)
     {
 
     }

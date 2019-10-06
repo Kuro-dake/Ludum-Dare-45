@@ -63,7 +63,7 @@ public class Controls : MonoBehaviour
             lr.enabled = false;
         }
 
-        if(Vector2.Distance(arm.transform.position, mpos) > 1f)
+        if(Vector2.Distance(arm.transform.position, mpos) > 1f && GM.player.player_dummy.hp > 0)
         {
             pchar.arm_z_rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             arm.transform.rotation = Quaternion.Euler(0f, 0f, pchar.arm_z_rotation + 90);
