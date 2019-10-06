@@ -17,7 +17,27 @@ public class Enemy : Character
     public float max_stress = 3f;
 
     Vector3 orig_size;
+    protected override void CorrectFacing()
+    {
+        if (type == enemy_type.ranged)
+        {
+            base.CorrectFacing();
+        }
+        else
+        {
+            
+            int direction = 1;
+            if (movement_target.transform.position.x < transform.position.x)
+            {
+                direction = -1;
+            }
 
+            if (direction != 0)
+            {
+                transform.localScale = new Vector3(starting_scale.x * direction, starting_scale.y, starting_scale.z);
+            }
+        }
+    }
     Character character
     {
         get
@@ -81,33 +101,15 @@ public class Enemy : Character
     /// Should set all enemies to dead : doesn't have reason to exist right now, since logic behind alive/dead was changed
     /// @TODO: Remove if obsolete
     /// </summary>
-    public static void KillAll()
-    {
-        GM.enemies.alive_enemies.ForEach(delegate (Enemy obj)
-        {
-            obj.alive = false;
-        });
-    }
+    
     float last_attack = 0f;
     public float attack_delay = 1f;
-
-    public float salve_delay = 3f;
 
     public float salve_between_shots_delay = .2f;
     public int salve_number = 3;
 
     IEnumerator Attack()
     {
-        last_attack = attack_delay;
-        while(last_attack > 0f)
-        {
-            if (!covering)
-            {
-                last_attack -= Time.deltaTime;
-            }
-            yield return null;
-        }
-        
         
         for (int i = 0; i < salve_number; i++)
         {
@@ -126,6 +128,15 @@ public class Enemy : Character
             }
 
             yield return new WaitForSeconds(salve_between_shots_delay);
+        }
+        last_attack = attack_delay;
+        while (last_attack > 0f)
+        {
+            if (!covering)
+            {
+                last_attack -= Time.deltaTime;
+            }
+            yield return null;
         }
     }
 
@@ -148,6 +159,7 @@ public class Enemy : Character
                 }
                 transform.Rotate(Vector3.back * 90f);
                 gameObject.layer = 0;
+                StopAllCoroutines();
                 FadeOut();
                 anim.SetBool("dead", true);
                 

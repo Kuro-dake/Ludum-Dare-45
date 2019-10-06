@@ -38,6 +38,7 @@ public class Character : MonoBehaviour
         jolt = 10f;
         gun_flash.GetComponent<SpriteRenderer>().color = Color.white;
         gun_flash.transform.localRotation = Quaternion.EulerAngles(0f, 0f, Random.Range(-1f, 1f));
+        GM.game.Flash(arm.transform.position);
     }
 
     bool _covering = false;
@@ -76,11 +77,11 @@ public class Character : MonoBehaviour
         }
     }
 
-    Vector3 starting_scale;
+    protected Vector3 starting_scale;
 
-    void CorrectFacing()
+    protected virtual void CorrectFacing()
     {
-
+        
         int direction = 0;
         float z = arm_z_rotation;
         /*if (gameObject.name == "player") {
@@ -118,7 +119,7 @@ public class Character : MonoBehaviour
     protected virtual void Update()
     {
         gun_flash.GetComponent<SpriteRenderer>().color -= Color.black * Time.deltaTime * 10f;
-
+        
         if (character_target != null && aim)
         {
 

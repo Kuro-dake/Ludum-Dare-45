@@ -19,14 +19,19 @@ public class ShotHit : MonoBehaviour
         }
     }
     // Update is called once per frame
+    public float light_sub = 15f;
     void Update()
     {
+        Light l = GetComponentInChildren<Light>();
+        l.intensity -= Time.deltaTime * light_sub;
         if (sr.color.a <= 0f)
         {
             return;
         }
             Vector3 decrease = Vector3.one * Time.deltaTime * decrease_speed;
         decrease.z = 0f;
+        
+        
         transform.localScale += decrease;
         Vector3 lr = transform.localRotation.eulerAngles;
         transform.localRotation = Quaternion.EulerAngles(0, 0, lr.z + 11f);// Time.deltaTime * 100f);

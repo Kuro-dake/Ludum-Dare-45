@@ -6,9 +6,9 @@ public class PlayerData : MonoBehaviour
 {
 
     public int ammo = 5;
+    public int hpmax = 10;
     
-    
-    public Character player_dummy;
+    public Player player_dummy;
 
     public bool covering
     {

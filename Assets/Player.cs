@@ -9,18 +9,22 @@ public class Player : Character
     {
         base.Update(); 
     }
-
+    public void ResetAnim()
+    {
+        anim.SetBool("dead", false);
+    }
     public override void Attacked(int damage)
     {
         
         if (!covering)
         {
-            hp -= damage;
+            hp = Mathf.Clamp(hp-damage, 0, GM.player.hpmax);
         }
         GM.DevoutUpdate();
         if (hp <= 0)
         {
-            GM.ReloadScene();
+            anim.SetBool("dead", true);
+            //GM.ReloadScene();
         }
         
     }

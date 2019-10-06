@@ -47,7 +47,8 @@ public class EnemyManager : MonoBehaviour
     }
 
     Queue<EnemyInfo> enemy_info = new Queue<EnemyInfo>();
-
+    Queue<EnemyInfo> info_from_checkpoint = new Queue<EnemyInfo>();
+    Coroutine generating_routine;
     public void StartGeneratingEnemies() {
         foreach (YamlMappingNode mn in Setup.GetFile("level1").GetNode<YamlSequenceNode>("enemies"))
         {
@@ -61,35 +62,71 @@ public class EnemyManager : MonoBehaviour
             );
         }
 
-        StartCoroutine(GenerateEnemies());
+        generating_routine = StartCoroutine(GenerateEnemies());
     }
     public bool activated = true;
+    public int level_modifier_dev = 1;
+    public void KillAll()
+    {
+        all_enemies.ForEach(delegate (Enemy obj)
+        {
+            obj.StopAllCoroutines();
+            Destroy(obj.gameObject);
+        });
+        _all_enemies.Clear();
+    }
+    public void RestartFromCheckpoint()
+    {
+        GM.player.player_dummy.ResetAnim();
+        KillAll();
+        StopCoroutine(generating_routine);
+        enemy_info = new Queue<EnemyInfo>(info_from_checkpoint);
+        generating_routine = StartCoroutine(GenerateEnemies());
+        Debug.Log("should reload");
+    }
     IEnumerator GenerateEnemies()
     {
         if (!activated)
         {
             yield break;
         }
-
+        info_from_checkpoint = new Queue<EnemyInfo>(enemy_info);
         while (enemy_info.Count > 0)
         {
-            EnemyInfo next_enemy = enemy_info.Dequeue();
+            EnemyInfo next_enemy = enemy_info.Peek();
 
             yield return new WaitForSeconds(next_enemy.delay);
-            if (next_enemy.type != "waitfordead") { 
-                PlaceEnemy(next_enemy.type, next_enemy.entry, next_enemy.target);
-            }
-            else
-            {
+            if (next_enemy.type == "waitfordead") {
                 while (any_alive)
                 {
                     yield return null;
                 }
             }
-            
+            else if (next_enemy.type == "dialogue")
+            {
+                info_from_checkpoint = new Queue<EnemyInfo>(enemy_info); 
+                GM.player.player_dummy.hp = GM.player.hpmax;
+                GM.DevoutUpdate();
+                GM.cinema.PlayLevelString(int.Parse(next_enemy.target) + level_modifier_dev);
+                while (GM.cinema.active)
+                {
+                    yield return null;
+                }
+            }
+            else if (next_enemy.type == "end")
+            {
+                GM.game_ended = true;
+                yield return null;
+            }
+            else
+            {
+                PlaceEnemy(next_enemy.type, next_enemy.entry, next_enemy.target);
+                        
+            }
+            enemy_info.Dequeue();
         }
 
-        Debug.Log("routine done");
+        generating_routine = null;
     }
 
     void PlaceEnemy(string type, string entry, string target)

@@ -23,7 +23,9 @@ public class Controls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            GM.player.covering = true;
+            if (GM.player.player_dummy.hp > 0) { 
+                GM.player.covering = true;
+            }
         } 
         else if(Input.GetKeyUp(KeyCode.Mouse1))
         {
@@ -33,7 +35,14 @@ public class Controls : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GM.player.player_dummy.ShootRay();
+            if (GM.player.player_dummy.hp <= 0)
+            {
+                GM.enemies.RestartFromCheckpoint();
+            }
+            else
+            {
+                GM.player.player_dummy.ShootRay();
+            }
         }
 
         Character pchar = GM.player.player_dummy;

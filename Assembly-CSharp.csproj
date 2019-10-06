@@ -62,7 +62,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\actor.cs" />
     <Compile Include="Assets\Character.cs" />
+    <Compile Include="Assets\clouds.cs" />
+    <Compile Include="Assets\DialogueManager.cs" />
     <Compile Include="Assets\Player.cs" />
     <Compile Include="Assets\Scripts\Data\DataExtensions.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />

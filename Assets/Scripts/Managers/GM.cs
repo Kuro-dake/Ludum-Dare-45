@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GM : MonoBehaviour
 {
     static GM _inst;
+    public static bool game_ended = false;
     public static GM inst
     {
         get
@@ -36,8 +37,8 @@ public class GM : MonoBehaviour
 
         }
     }
-    
-   
+
+
     static Dictionary<string, Component> scripts = new Dictionary<string, Component>();
 
     public static T GetScript<T>(string name) where T : Component
@@ -61,8 +62,14 @@ public class GM : MonoBehaviour
     static Text devout { get { return GetScript<Text>("DevOut"); } }
     public static void DevoutUpdate()
     {
-        devout.text = "ammo : " + GM.player.ammo.ToString() + " ; HP : " + GM.player.player_dummy.hp;
+        devout.text = "HP : <color=red>" + GM.player.player_dummy.hp + "</color>";
     }
+    public static bool devout_visible{
+        set
+        {
+            devout.GetComponentInParent<Canvas>().enabled = value;
+        }
+        }
     public static PlayerData player { get { return GetScript<PlayerData>("PlayerData"); } }
 
     
@@ -70,8 +77,8 @@ public class GM : MonoBehaviour
     public static GameManager game { get { return GetScript<GameManager>("GameManager"); } }
     public static Controls controls { get { return GetScript<Controls>("Controls"); } }
 
-   /* public static Cinema cinema { get { return GetScript<Cinema>("Cinema"); } }
-    public static TitleScreen title { get { return GetScript<TitleScreen>("TitleScreen"); } }
+    public static DialogueManager cinema { get { return GetScript<DialogueManager>("DialogueManager"); } }
+   /* public static TitleScreen title { get { return GetScript<TitleScreen>("TitleScreen"); } }
 
     public static GameObject canvas { get { return inst["Canvas"]; } }
     public static DialogueContainer dialogues { get { return GetScript<DialogueContainer>("Dialogues"); } }

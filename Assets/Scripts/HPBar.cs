@@ -24,6 +24,7 @@ public class HPBar : MonoBehaviour
     {
         follow = f;
         transform.SetParent(f.transform);
+        transform.position = follow.transform.position + position_modifier;
     }
 
     public void Display(int num)

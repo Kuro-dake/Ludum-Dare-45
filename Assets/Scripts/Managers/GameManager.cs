@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject shot_hit;
-    
+    public GameObject shot_light;
+
     public void Hit(Vector2 point, Vector2 from, bool blood)
     {
         
@@ -26,6 +27,13 @@ public class GameManager : MonoBehaviour
 
         blood_particle_obj.rotation = Quaternion.Euler(0f, 0f, rot_z + 180);
         blood_particle_obj.transform.position += blood_particle_obj.transform.right / 3f;
+    }
+
+    public void Flash(Vector2 point)
+    {
+
+        GameObject nsh = Instantiate(shot_light, point, Quaternion.identity);
+        
     }
 
 }
