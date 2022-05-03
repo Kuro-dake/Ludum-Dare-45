@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour
     {
         GM.audio.PlaySound(blood ? "hit_flesh" : "hit");
         GameObject nsh = Instantiate(shot_hit, point, Quaternion.identity);
-        Transform blood_particle_obj = nsh.transform.FindChild("particle");
+        Transform blood_particle_obj = nsh.transform.Find("particle");
         if (!blood) {
             Destroy(blood_particle_obj.gameObject);
         }
         else
         {
-            Destroy(nsh.transform.FindChild("explosionparticle").gameObject);
+            Destroy(nsh.transform.Find("explosionparticle").gameObject);
         }
 
         Vector2 ppos = point;

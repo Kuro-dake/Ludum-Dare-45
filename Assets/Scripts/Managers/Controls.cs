@@ -33,7 +33,7 @@ public class Controls : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !GM.cinema.active)
         {
             if (GM.player.player_dummy.hp <= 0)
             {

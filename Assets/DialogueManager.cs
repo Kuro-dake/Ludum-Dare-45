@@ -14,10 +14,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
         {
-            
+            GM.audio.PlaySound("hit_flesh");
             Progress();
         }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.Mouse1))
         {
 
             Progress(true);
@@ -146,14 +146,14 @@ public class DialogueManager : MonoBehaviour
             return GetComponent<AudioSource>(); 
         }
     }
-    string TextToFileName(string text)
+    string TextToFileName(string actor, string text)
     {
-        new List<string>() { "<color=green>", "<b>", "=", "<", ">", "\n", " ", ".", ",", "!", "*", "?", "'" }.ForEach(delegate (string find)
+        new List<string>() { "<color=green>", "<b>", "</color>", "</b>", "=", "<", ">", "\n", " ", ".", ",", "!", "*", "?", "'" }.ForEach(delegate (string find)
         {
             text = text.Replace(find, "");
         });
-        int namelen = 15;
-        return text.Substring(0, text.Length < 15 ? text.Length : 15).ToLower();
+        int namelen = 25;
+        return actor + "_" + text.Substring(0, text.Length < namelen ? text.Length : namelen).ToLower();
     }
     void StopActorsTalking()
     {
@@ -242,9 +242,9 @@ public class DialogueManager : MonoBehaviour
 
 
         string textname = names.ContainsKey(char_id) ? names[char_id] : char_id;
-        speech = "<b>"+textname+"</b>\n\n" + text + ";fn:"+TextToFileName(text);
+        speech = "<b>" + textname + "</b>\n\n" + text;// + ";fn:"+ TextToFileName(char_id, text);
 
-        AudioClip clip = (AudioClip)Resources.Load("Audio/Speech/"+ TextToFileName(text));
+        AudioClip clip = (AudioClip)Resources.Load("Audio/Speech/"+ TextToFileName(char_id, text));
         if (clip != null)
         {
             audio.Stop();
